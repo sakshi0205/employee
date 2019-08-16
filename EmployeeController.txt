@@ -1,0 +1,32 @@
+package com.demo.BootDemoProject.controller;
+
+import javax.validation.Valid;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import com.demo.BootDemoProject.model.Employee;
+
+@Controller
+public class EmployeeController {
+	@RequestMapping("/employee")
+	public ModelAndView getEmployeeHomePage()
+	{
+		ModelAndView mv=new ModelAndView();
+		mv.setViewName("addEmployee");
+		//mv.addObject("emp",new Employee());
+		return mv;
+	}
+
+	@RequestMapping(value="/add")
+	
+		public ModelAndView addEmpoyee(@Valid @ModelAttribute("emp")Employee employee) {
+		ModelAndView mv=new ModelAndView();
+			mv.addObject("emp",employee);
+			mv.setViewName("addEmployeeSuccess");
+		return mv;
+	}
+	
+}
